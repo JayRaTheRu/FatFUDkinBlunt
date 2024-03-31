@@ -20,12 +20,12 @@
 
       .container {
         max-width: 500px;
-        margin: 100px auto;
+        margin: 30px auto 100px; /* Adjust margin-top to move the container higher */
         background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
         border-radius: 10px;
-        position: relative; /* Ensure proper positioning of absolute elements */
-        border: 5px solid #4caf50; /* Green border */
+        position: relative;
+        border: 5px solid #4caf50;
       }
 
       .header {
@@ -99,18 +99,26 @@
 
       .left-container {
         left: 85px; /* Adjust left position */
-        top: -75px; /* Adjust top position */
+        top: -25px; /* Adjust top position */
       }
 
       .right-container {
         right: 85px; /* Adjust right position */
-        top: -75px; /* Adjust top position */
+        top: -25px; /* Adjust top position */
       }
 
       .images-container img {
         width: 300px; /* Adjust image width */
         height: auto; /* Maintain aspect ratio */
         margin: 5px;
+      }
+
+      .left-container img,
+      .right-container img {
+        width: 300px; /* Adjust image width */
+        height: auto; /* Maintain aspect ratio */
+        margin: 5px;
+        border-radius: 10px; /* Add rounded corners */
       }
     </style>
   </head>
