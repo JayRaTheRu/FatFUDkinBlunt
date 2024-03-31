@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFT Minting Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url(image/blonnnt.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: black;
+            position: relative; /* Ensure proper positioning of absolute elements */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            position: relative; /* Ensure proper positioning of absolute elements */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .mint-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .images-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            animation: moveImages 5s infinite alternate; /* Animation */
+        }
+
+        @keyframes moveImages {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px); /* Adjust the movement */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .left-container {
+            left: 85px; /* Adjust left position */
+            top: -85px; /* Adjust top position */
+        }
+
+        .right-container {
+            right: 85px; /* Adjust right position */
+            top: -85px; /* Adjust top position */
+        }
+
+        .images-container img {
+            width: 300px; /* Adjust image width */
+            height: auto; /* Maintain aspect ratio */
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Mint a FAT FUDkin Blunt</h1>
+            <button id="wallet-connect-button">Wallet Connect</button>
+        </div>
+    </div>
+    <div class="images-container left-container">
+        <img src="image/bblunt1.jpg" alt="Left Image 1">
+        <img src="image/bblunt12.jpg" alt="Left Image 2">
+        <img src="image/rwblunt4.jpg" alt="Left Image 3">
+    </div>
+    <div class="images-container right-container">
+        <img src="image/rwblunt2.jpg" alt="Right Image 1">
+        <img src="image/urwblunt1.jpg" alt="Right Image 2">
+        <img src="image/rwblunt9.jpg" alt="Right Image 3">
+    </div>
+</body>
+</html>
