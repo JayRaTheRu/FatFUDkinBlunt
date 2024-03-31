@@ -34,7 +34,11 @@
         }
 
         .header h1 {
-            font-size: 62px; /* Adjust the font size as needed */
+            font-size: 40px; /* Adjust the font size for smaller screens */
+        }
+
+        .header h3 {
+            font-size: 16px; /* Adjust the font size for smaller screens */
         }
 
         .green-text {
@@ -52,6 +56,7 @@
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            width: 100%; /* Make inputs full-width */
         }
 
         button {
@@ -62,6 +67,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px; /* Increase font size for larger buttons */
+            width: 100%; /* Make buttons full-width */
         }
 
         button:hover {
@@ -74,7 +80,7 @@
         }
 
         .mint-buttons button {
-            margin: 10px; /* Add some margin between buttons */
+            margin: 10px 0; /* Add some margin between buttons */
         }
 
         .images-container {
@@ -97,20 +103,25 @@
             }
         }
 
-        .left-container {
-            left: 85px; /* Adjust left position */
-            top: -75px; /* Adjust top position */
-        }
-
-        .right-container {
-            right: 85px; /* Adjust right position */
-            top: -75px; /* Adjust top position */
+        .left-container, .right-container {
+            width: 100%; /* Make image containers full-width */
+            text-align: center; /* Center align images */
         }
 
         .images-container img {
-            width: 300px; /* Adjust image width */
+            width: 100%; /* Make images full-width */
             height: auto; /* Maintain aspect ratio */
             margin: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 62px; /* Adjust the font size as needed */
+            }
+
+            .header h3 {
+                font-size: 18px; /* Adjust the font size as needed */
+            }
         }
     </style>
 </head>
