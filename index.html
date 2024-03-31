@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace, sans-serif;
             background-image: url(image/blonnnt.png);
             background-size: contain;
             background-repeat: no-repeat;
@@ -19,12 +19,13 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 100px auto;
             background-color: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
             position: relative; /* Ensure proper positioning of absolute elements */
+            border: 5px solid #4caf50; /* Green border */
         }
 
         .header {
@@ -32,9 +33,12 @@
             margin-bottom: 20px;
         }
 
-        .mint-form {
-            display: flex;
-            flex-direction: column;
+        .header h1 {
+            font-size: 62px; /* Adjust the font size as needed */
+        }
+
+        .green-text {
+            color: #4CAF50; /* Green color */
         }
 
         label {
@@ -51,16 +55,26 @@
         }
 
         button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
+            padding: 15px 30px; /* Increase padding for larger buttons */
+            background-color: #f89e35; /* MetaMask orange color */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-size: 18px; /* Increase font size for larger buttons */
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #d88b21; /* Darker shade of MetaMask orange color */
+        }
+
+        .mint-buttons {
+            text-align: center; /* Center align mint buttons */
+            display: none; /* Initially hidden */
+        }
+
+        .mint-buttons button {
+            margin: 10px; /* Add some margin between buttons */
         }
 
         .images-container {
@@ -85,12 +99,12 @@
 
         .left-container {
             left: 85px; /* Adjust left position */
-            top: -85px; /* Adjust top position */
+            top: -75px; /* Adjust top position */
         }
 
         .right-container {
             right: 85px; /* Adjust right position */
-            top: -85px; /* Adjust top position */
+            top: -75px; /* Adjust top position */
         }
 
         .images-container img {
@@ -101,21 +115,72 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Mint a FAT FUDkin Blunt</h1>
-            <button id="wallet-connect-button">Wallet Connect</button>
+<div class="container" id="mint-container">
+    <div class="header">
+        <h1>Mint a:<br><span class="green-text">FAT</span><br><span class="green-text">FUDkin</span><br><span class="green-text">BLUNT</span></h1>
+        <h3>These are the DANKEST and FATEST FUDkin blunts on the block... The Magma:Onyx TESTNET blockchain that is..
+            <br>
+            <br>
+        Mint a blunt, mint two, mint twenty-two.. Send them to friends, burn them, do whatever you please.
+        Smart people are creating transactions testing the network earning points, faded people do that plus mint FAT FUDkin BLUNTS.  </h3>
+        <h2>
+            Limited Supply
+        </h2>
+        <h2>1 FAT BLUNT = .025 $LAVA
+        </h2>
+        <button id="connect-wallet-button">Connect Wallet</button>
+        <div class="mint-buttons" id="mint-buttons">
+            <button id="mint-blunt-button">Mint a FUDkin Blunt</button>
+            <button id="mint-multiple-blunts-button">Mint Multiple Blunts</button>
         </div>
     </div>
-    <div class="images-container left-container">
-        <img src="image/bblunt1.jpg" alt="Left Image 1">
-        <img src="image/bblunt12.jpg" alt="Left Image 2">
-        <img src="image/rwblunt4.jpg" alt="Left Image 3">
-    </div>
-    <div class="images-container right-container">
-        <img src="image/rwblunt2.jpg" alt="Right Image 1">
-        <img src="image/urwblunt1.jpg" alt="Right Image 2">
-        <img src="image/rwblunt9.jpg" alt="Right Image 3">
-    </div>
+</div>
+
+<div class="images-container left-container">
+    <img src="image/bblunt1.jpg" alt="Left Image 1" />
+    <img src="image/bblunt12.jpg" alt="Left Image 2" />
+    <img src="image/rwblunt4.jpg" alt="Left Image 3" />
+</div>
+<div class="images-container right-container">
+    <img src="image/rwblunt2.jpg" alt="Right Image 1" />
+    <img src="image/urwblunt1.jpg" alt="Right Image 2" />
+    <img src="image/rwblunt9.jpg" alt="Right Image 3" />
+</div>
+
+<script>
+    // Function to check if MetaMask is installed
+    async function isMetaMaskInstalled() {
+        return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
+    }
+
+    // Function to connect/disconnect MetaMask wallet
+    async function toggleWalletConnection() {
+        try {
+            // Check if MetaMask is installed
+            if (!await isMetaMaskInstalled()) {
+                alert("Please install MetaMask to use this feature.");
+                return;
+            }
+
+            // Request access to the MetaMask wallet
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            if (accounts.length > 0) {
+                // Wallet connected, show mint buttons and change button text
+                document.getElementById('mint-buttons').style.display = 'block';
+                document.getElementById('connect-wallet-button').textContent = 'Disconnect Wallet';
+            } else {
+                // Wallet disconnected, hide mint buttons and change button text
+                document.getElementById('mint-buttons').style.display = 'none';
+                document.getElementById('connect-wallet-button').textContent = 'Connect Wallet';
+            }
+        } catch (error) {
+            console.error(error);
+            alert("Failed to connect to MetaMask wallet.");
+        }
+    }
+
+    // Event listener for Connect/Disconnect Wallet button
+    document.getElementById('connect-wallet-button').addEventListener('click', toggleWalletConnection);
+</script>
 </body>
 </html>
