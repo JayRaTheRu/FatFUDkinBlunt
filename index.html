@@ -1,186 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NFT Minting Page</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace, sans-serif;
-            background-image: url assets/blonnnt.png;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            background-color: black;
-            position: relative; /* Ensure proper positioning of absolute elements */
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Courier New", Courier, monospace, sans-serif;
+        background-image: url image/blonnnt.png;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-color: black;
+        position: relative; /* Ensure proper positioning of absolute elements */
+      }
 
-        .container {
-            max-width: 500px;
-            margin: 100px auto;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            position: relative; /* Ensure proper positioning of absolute elements */
-            border: 5px solid #4caf50; /* Green border */
-        }
+      .container {
+        max-width: 500px;
+        margin: 100px auto;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        position: relative; /* Ensure proper positioning of absolute elements */
+        border: 5px solid #4caf50; /* Green border */
+      }
 
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-        .header h1 {
-            font-size: 62px; /* Adjust the font size as needed */
-        }
+      .header h1 {
+        font-size: 62px; /* Adjust the font size as needed */
+      }
 
-        .green-text {
-            color: #4CAF50; /* Green color */
-        }
+      .green-text {
+        color: #4caf50; /* Green color */
+      }
 
-        label {
-            margin-bottom: 5px;
-        }
+      label {
+        margin-bottom: 5px;
+      }
 
-        input[type="text"],
-        input[type="file"],
-        textarea {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+      input[type="text"],
+      input[type="file"],
+      textarea {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-        button {
-            padding: 15px 30px; /* Increase padding for larger buttons */
-            background-color: #f89e35; /* MetaMask orange color */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px; /* Increase font size for larger buttons */
-        }
+      button {
+        padding: 15px 30px; /* Increase padding for larger buttons */
+        background-color: #f89e35; /* MetaMask orange color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px; /* Increase font size for larger buttons */
+      }
 
-        button:hover {
-            background-color: #d88b21; /* Darker shade of MetaMask orange color */
-        }
+      button:hover {
+        background-color: #d88b21; /* Darker shade of MetaMask orange color */
+      }
 
-        .mint-buttons {
-            text-align: center; /* Center align mint buttons */
-            display: none; /* Initially hidden */
-        }
+      .mint-buttons {
+        text-align: center; /* Center align mint buttons */
+        display: none; /* Initially hidden */
+      }
 
-        .mint-buttons button {
-            margin: 10px; /* Add some margin between buttons */
-        }
+      .mint-buttons button {
+        margin: 10px; /* Add some margin between buttons */
+      }
 
-        .images-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            animation: moveImages 5s infinite alternate; /* Animation */
-        }
+      .images-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        animation: moveImages 5s infinite alternate; /* Animation */
+      }
 
-        @keyframes moveImages {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px); /* Adjust the movement */
-            }
-            100% {
-                transform: translateY(0);
-            }
+      @keyframes moveImages {
+        0% {
+          transform: translateY(0);
         }
+        50% {
+          transform: translateY(-20px); /* Adjust the movement */
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
 
-        .left-container {
-            left: 85px; /* Adjust left position */
-            top: -75px; /* Adjust top position */
-        }
+      .left-container {
+        left: 85px; /* Adjust left position */
+        top: -75px; /* Adjust top position */
+      }
 
-        .right-container {
-            right: 85px; /* Adjust right position */
-            top: -75px; /* Adjust top position */
-        }
+      .right-container {
+        right: 85px; /* Adjust right position */
+        top: -75px; /* Adjust top position */
+      }
 
-        .images-container img {
-            width: 300px; /* Adjust image width */
-            height: auto; /* Maintain aspect ratio */
-            margin: 5px;
-        }
+      .images-container img {
+        width: 300px; /* Adjust image width */
+        height: auto; /* Maintain aspect ratio */
+        margin: 5px;
+      }
     </style>
-</head>
-<body>
-<div class="container" id="mint-container">
-    <div class="header">
-        <h1>Mint a:<br><span class="green-text">FAT</span><br><span class="green-text">FUDkin</span><br><span class="green-text">BLUNT</span></h1>
-        <h3>These are the DANKEST and FATEST FUDkin blunts on the block... The Magma:Onyx TESTNET blockchain that is..
-            <br>
-            <br>
-        Mint a blunt, mint two, mint twenty-two.. Send them to friends, burn them, do whatever you please.
-        Smart people are creating transactions testing the network earning points, faded people do that plus mint FAT FUDkin BLUNTS.  </h3>
-        <h2>
-            Limited Supply
-        </h2>
-        <h2>1 FAT BLUNT = .025 $LAVA
-        </h2>
+  </head>
+  <body>
+    <div class="container" id="mint-container">
+      <div class="header">
+        <h1>
+          Mint a:<br /><span class="green-text">FAT</span><br /><span
+            class="green-text"
+            >FUDkin</span
+          ><br /><span class="green-text">BLUNT</span>
+        </h1>
+        <h3>
+          These are the DANKEST and FATEST FUDkin blunts on the block... The
+          Magma:Onyx TESTNET blockchain that is..
+          <br />
+          <br />
+          Mint a blunt, mint two, mint twenty-two.. Send them to friends, burn
+          them, do whatever you please. Smart people are creating transactions
+          testing the network earning points, faded people do that plus mint FAT
+          FUDkin BLUNTS.
+        </h3>
+        <h2>Limited Supply</h2>
+        <h2>1 FAT BLUNT = .025 $LAVA</h2>
         <button id="connect-wallet-button">Connect Wallet</button>
         <div class="mint-buttons" id="mint-buttons">
-            <button id="mint-blunt-button">Mint a FUDkin Blunt</button>
-            <button id="mint-multiple-blunts-button">Mint Multiple Blunts</button>
+          <button id="mint-blunt-button">Mint a FUDkin Blunt</button>
+          <button id="mint-multiple-blunts-button">Mint Multiple Blunts</button>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="images-container left-container">
-    <img src="assets/bblunt1.jpg" alt="Left Image 1" />
-    <img src="assets/bblunt12.jpg" alt="Left Image 2" />
-    <img src="assets/rwblunt4.jpg" alt="Left Image 3" />
-</div>
-<div class="images-container right-container">
-    <img src="assets/rwblunt2.jpg" alt="Right Image 1" />
-    <img src="assets/urwblunt1.jpg" alt="Right Image 2" />
-    <img src="assets/rwblunt9.jpg" alt="Right Image 3" />
-</div>
+    <div class="images-container left-container">
+      <img src="assets/bblunt1.jpg" alt="Left Image 1" />
+      <img src="assets/bblunt12.jpg" alt="Left Image 2" />
+      <img src="assets/rwblunt4.jpg" alt="Left Image 3" />
+    </div>
+    <div class="images-container right-container">
+      <img src="assets/rwblunt2.jpg" alt="Right Image 1" />
+      <img src="assets/urwblunt1.jpg" alt="Right Image 2" />
+      <img src="assets/rwblunt9.jpg" alt="Right Image 3" />
+    </div>
 
-<script>
-    // Function to check if MetaMask is installed
-    async function isMetaMaskInstalled() {
-        return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
-    }
+    <script>
+      // Function to check if MetaMask is installed
+      async function isMetaMaskInstalled() {
+        return (
+          typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
+        );
+      }
 
-    // Function to connect/disconnect MetaMask wallet
-    async function toggleWalletConnection() {
+      // Function to connect/disconnect MetaMask wallet
+      async function toggleWalletConnection() {
         try {
-            // Check if MetaMask is installed
-            if (!await isMetaMaskInstalled()) {
-                alert("Please install MetaMask to use this feature.");
-                return;
-            }
+          // Check if MetaMask is installed
+          if (!(await isMetaMaskInstalled())) {
+            alert("Please install MetaMask to use this feature.");
+            return;
+          }
 
-            // Request access to the MetaMask wallet
-            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            if (accounts.length > 0) {
-                // Wallet connected, show mint buttons and change button text
-                document.getElementById('mint-buttons').style.display = 'block';
-                document.getElementById('connect-wallet-button').textContent = 'Disconnect Wallet';
-            } else {
-                // Wallet disconnected, hide mint buttons and change button text
-                document.getElementById('mint-buttons').style.display = 'none';
-                document.getElementById('connect-wallet-button').textContent = 'Connect Wallet';
-            }
+          // Request access to the MetaMask wallet
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          if (accounts.length > 0) {
+            // Wallet connected, show mint buttons and change button text
+            document.getElementById("mint-buttons").style.display = "block";
+            document.getElementById("connect-wallet-button").textContent =
+              "Disconnect Wallet";
+          } else {
+            // Wallet disconnected, hide mint buttons and change button text
+            document.getElementById("mint-buttons").style.display = "none";
+            document.getElementById("connect-wallet-button").textContent =
+              "Connect Wallet";
+          }
         } catch (error) {
-            console.error(error);
-            alert("Failed to connect to MetaMask wallet.");
+          console.error(error);
+          alert("Failed to connect to MetaMask wallet.");
         }
-    }
+      }
 
-    // Event listener for Connect/Disconnect Wallet button
-    document.getElementById('connect-wallet-button').addEventListener('click', toggleWalletConnection);
-</script>
-</body>
+      // Event listener for Connect/Disconnect Wallet button
+      document
+        .getElementById("connect-wallet-button")
+        .addEventListener("click", toggleWalletConnection);
+    </script>
+  </body>
 </html>
