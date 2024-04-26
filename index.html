@@ -134,6 +134,8 @@
       }
     }
   </style>
+  <!-- Add Web3.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
 </head>
 <body>
 <div class="container" id="mint-container">
@@ -176,48 +178,36 @@
 </div>
 
 <script>
-  // Function to check if MetaMask is installed
-  async function isMetaMaskInstalled() {
-    return (
-      typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask
-    );
+  // Initialize Web3
+  let web3;
+
+  // Check if Web3 has been injected by the browser (MetaMask)
+  if (window.ethereum) {
+      web3 = new Web3(window.ethereum);
   }
 
-  // Function to connect/disconnect MetaMask wallet
-  async function toggleWalletConnection() {
-    try {
-      // Check if MetaMask is installed
-      if (!(await isMetaMaskInstalled())) {
-        alert("Please install MetaMask to use this feature.");
-        return;
-      }
+  // Connect to the contract
+  const contractAddress = '0x...'; // Replace with your contract address
+  const contractABI = [/* ABI of your contract */];
+  const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-      // Request access to the MetaMask wallet
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      if (accounts.length > 0) {
-        // Wallet connected, show mint buttons and change button text
-        document.getElementById("mint-buttons").style.display = "block";
-        document.getElementById("connect-wallet-button").textContent =
-          "Disconnect Wallet";
-      } else {
-        // Wallet disconnected, hide mint buttons and change button text
-        document.getElementById("mint-buttons").style.display = "none";
-        document.getElementById("connect-wallet-button").textContent =
-          "Connect Wallet";
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Failed to connect to MetaMask wallet.");
-    }
-  }
+  // Event listener for Mint a FAT FUDkin Blunt button
+  document.getElementById("mint-blunt-button").addEventListener("click", async () => {
+      try {
+          // Request access to the MetaMask wallet
+          await window.ethereum.request({ method: "eth_requestAccounts" });
 
-  // Event listener for Connect/Disconnect Wallet button
-  document
-    .getElementById("connect-wallet-button")
-    .addEventListener("click", toggleWalletConnection);
+          // Call the contract's mint function
+          await contract.methods.mint().send({ from: web3.eth.defaultAccount });
+
+          // If successful, display a success message or perform any other action
+          alert("Blunt minted successfully!");
+      } catch (error) {
+          // Handle errors
+          console.error(error);
+          alert("Failed to mint the blunt. Please try again.");
+      }
+  });
 </script>
 </body>
 </html>
-
