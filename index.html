@@ -26,6 +26,15 @@
       border-radius: 10px;
       position: relative;
       border: 5px solid #4caf50;
+      overflow: hidden; /* Ensure the wallet address doesn't overflow */
+    }
+
+    .wallet-address {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 14px;
+      color: #4caf50;
     }
 
     .header {
@@ -139,6 +148,8 @@
 </head>
 <body>
 <div class="container" id="mint-container">
+  <!-- Display wallet address -->
+  <div class="wallet-address" id="wallet-address"></div>
   <div class="header">
     <h1>
       Mint a:<br /><span class="green-text">FAT</span><br /><span
@@ -205,11 +216,15 @@
         document.getElementById("mint-buttons").style.display = "block";
         document.getElementById("connect-wallet-button").textContent =
           "Disconnect Wallet";
+        // Display the connected wallet address
+        document.getElementById("wallet-address").textContent = "Connected Wallet: " + accounts[0];
       } else {
         // Wallet disconnected, hide mint buttons and change button text
         document.getElementById("mint-buttons").style.display = "none";
         document.getElementById("connect-wallet-button").textContent =
           "Connect Wallet";
+        // Clear the displayed wallet address
+        document.getElementById("wallet-address").textContent = "";
       }
     } catch (error) {
       console.error(error);
