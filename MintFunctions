@@ -17,7 +17,7 @@ uint256 private _tokenIdCounter;
 string[] private growOps = ["Indoor", "Outdoor", "Natural"];
 
 string[] private types = ["Indica", "Sativa", "Hybrid"];
-string[25] private tokenImages;
+string[24] private tokenImages;
 mapping(uint256 => string) public growOp;
 
 mapping(uint256 => string) public strainType;
@@ -40,9 +40,30 @@ _baseTokenURI = baseTokenURI;
 _tokenIdCounter = 1; // initializing the token ID counter
 // Hardcoding placeholder images
 
-tokenImages[0] = "https://example.com/image0.jpg";
-tokenImages[1] = "https://example.com/image1.jpg";
-// Continue adding image URLs up to tokenImages[24]
+tokenImages[0] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt1.png";
+tokenImages[1] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt2.png";
+tokenImages[2] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt3.png";
+tokenImages[3] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt4.png";
+tokenImages[4] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt5.png";
+tokenImages[5] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt6.png";
+tokenImages[6] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt7.png";
+tokenImages[7] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt8.png";
+tokenImages[8] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt9.png";
+tokenImages[9] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt10.png";
+tokenImages[10] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt11.png";
+tokenImages[11] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt12.png";
+tokenImages[12] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt13.png";
+tokenImages[13] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt14.png";
+tokenImages[14] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt15wax.png";
+tokenImages[15] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt16wax.png";
+tokenImages[16] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt17wax.png";
+tokenImages[17] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt18wax.png";
+tokenImages[18] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt19wax.png";
+tokenImages[19] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt20wax.png";
+tokenImages[20] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt21wax.png";
+tokenImages[21] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt22wax.png";
+tokenImages[22] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt23wax.png";
+tokenImages[23] = "https://github.com/JayRaTheRu/FatFUDkinBlunt/blob/c46607dd7cfede9ae2c33fdd74ef5a064314ce39/blunt24mega.png";
 }
 function mint(uint256 numberOfTokens) external payable {
 
@@ -62,7 +83,7 @@ _safeMint(msg.sender, newItemId);
 
 growOp[newItemId] = growOps[random(0, growOps.length)];
 strainType[newItemId] = types[random(0, types.length)];
-tokenImageURLs[newItemId] = tokenImages[random(0, 25)];
+tokenImageURLs[newItemId] = tokenImages[random(0, 24)];
 // Assign THC percentage based on rarity
 
 thcPercentage[newItemId] = generateThcPercentage();
