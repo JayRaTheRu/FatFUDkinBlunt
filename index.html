@@ -134,6 +134,8 @@
       }
     }
   </style>
+  <!-- Add Web3.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.6.0/dist/web3.min.js"></script>
 </head>
 <body>
 <div class="container" id="mint-container">
@@ -156,6 +158,7 @@
     </h3>
     <h2>Limited Supply</h2>
     <h2>1 FAT BLUNT = .00420 $LAVA</h2>
+    <!-- Connect Wallet button -->
     <button id="connect-wallet-button">Connect Wallet</button>
     <div class="mint-buttons" id="mint-buttons">
       <button id="mint-blunt-button">Mint a FAT FUDkin Blunt</button>
@@ -175,6 +178,7 @@
   <img src="assets/rwblunt9.jpg" alt="Right Image 3" />
 </div>
 
+<!-- JavaScript code to connect to MetaMask and interact with the contract -->
 <script>
   // Function to check if MetaMask is installed
   async function isMetaMaskInstalled() {
@@ -217,6 +221,30 @@
   document
     .getElementById("connect-wallet-button")
     .addEventListener("click", toggleWalletConnection);
+
+  // Add event listener for Mint a FAT FUDkin Blunt button
+  document.getElementById("mint-blunt-button").addEventListener("click", async () => {
+    try {
+      // Check if MetaMask is installed
+      if (!(await isMetaMaskInstalled())) {
+        alert("Please install MetaMask to use this feature.");
+        return;
+      }
+
+      // Request access to the MetaMask wallet
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+
+      // Call the contract's mint function
+      await contract.methods.mint().send({ from: ethereum.selectedAddress });
+
+      // If successful, display a success message or perform any other action
+      alert("Blunt minted successfully!");
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+      alert("Failed to mint the blunt. Please try again.");
+    }
+  });
 </script>
 </body>
 </html>
